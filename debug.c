@@ -7,6 +7,7 @@
 #include <unistd.h>
 
 #include "debug.h"
+#include "M_clrout/clrout.h"
 
 #define PROC_NAME_PATH_SIZE 32
 
@@ -31,9 +32,13 @@ void print_location(const char* file, const char* function, int line)
    char process_name[MAX_PROCESS_NAME_SIZE + 1];
    get_process_name(pid, process_name);
 
+   set_out_color(stderr, CLR_RED);
+
    fprintf(stderr, "\n%s|%d -> %s -> %s -> line %d: \n", 
       process_name, pid, file, function, line
    );
+
+   set_out_color(stderr, CLR_RESET);
 }
 
 void output_debug_info(
@@ -43,8 +48,13 @@ void output_debug_info(
    va_start(va_args, format);
 
    print_location(file, function, line);
+
+   set_out_color(stderr, CLR_CYAN);
+
    vfprintf(stderr, format, va_args);
    fputs("\n\n", stderr);
+   
+   set_out_color(stderr, CLR_RESET);
 
    va_end(va_args);
 }
@@ -57,6 +67,8 @@ void output_vars(
    
    print_location(file, function, line);
    
+   set_out_color(stderr, CLR_CYAN);
+
    char mutable_va_args_str[strlen(va_args_str) + 1];
    strcpy(mutable_va_args_str, va_args_str);
 
@@ -124,6 +136,8 @@ void output_vars(
    }
    
    putchar('\n');
+
+   set_out_color(stderr, CLR_RESET);
 
    va_end(va_args);
 }
