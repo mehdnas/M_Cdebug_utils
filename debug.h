@@ -38,13 +38,13 @@ typedef enum TYPES_ENUM {
       #define DBG_LOG_VARS(...) \
          output_vars(__FILE__, __FUNCTION__, __LINE__, #__VA_ARGS__ __VA_OPT__(,) __VA_ARGS__)
    #else
-      // The macro extends to nothing if MDBG is not defined.
+      // The macro expanded to nothing if MDBG is not defined.
       #define DBG_LOG_VARS(...) 
    #endif
 
 #else
 
-   // If NDEBUG is defined then the macros estend to nothing.
+   // If NDEBUG is defined then the macros expands to nothing.
    #define DBG_LOG(format, ...) 
    #define DBG_LOG_VARS(...) 
 
