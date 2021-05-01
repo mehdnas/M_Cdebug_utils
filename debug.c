@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 #include "debug.h"
-#include "M_clrout/clrout.h"
+#include "clrout.h"
 
 #define PROC_NAME_PATH_SIZE 32
 
