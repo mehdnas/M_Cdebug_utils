@@ -23,26 +23,21 @@ MAKE_LIB := make -C
 BIN_DIR := ./bin
 BUILD_DIR := ./build
 
-# terminal output coloring library
-CLROUT_DIR := ./M_clrout
-CLROUT_BIN_DIR := $(CLROUT_DIR)/bin
-CLROUT_LIB := $(CLROUT_BIN_DIR)/libclrout.a
-
 OUTPUT_FILE := $(BIN_DIR)/libCdebug_utils.a
 
 OBJECTS := $(BUILD_DIR)/debug.o
 
 HEADER_FILES := debug.h
 
-$(OUTPUT_FILE): $(OBJECTS) $(BIN_DIR)
+$(OUTPUT_FILE): $(OBJECTS) $(BIN_DIR) $()
 	ar r $@ $(OBJECTS)
 	ranlib $@
 
 $(BIN_DIR):
 	mkdir -p $@
 
-$(OBJECTS): $(BUILD_DIR)/%.o: %.c $(HEADER_FILES) $(BUILD_DIR) $(CLROUT_LIB)
-	$(COBJ) $@ $< -L$(CLROUT_BIN_DIR) -l:$(CLROUT_LIB)
+$(OBJECTS): $(BUILD_DIR)/%.o: %.c $(HEADER_FILES) $(BUILD_DIR)
+	$(COBJ) $@ $<
 
 $(CLROUT_LIB):
 	$(MAKE_LIB) $(CLROUT_DIR)
