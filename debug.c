@@ -10,7 +10,7 @@
 #include "clrout.h"
 
 #define PROC_NAME_PATH_SIZE 32
-#define OUT_STREAM stdout
+#define OUT_STREAM stderr
 
 void get_process_name(const pid_t pid, char* name)
 {
