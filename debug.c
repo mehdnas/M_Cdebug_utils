@@ -10,6 +10,7 @@
 #include "clrout.h"
 
 #define PROC_NAME_PATH_SIZE 32
+#define OUT_STREAM stdout
 
 void get_process_name(const pid_t pid, char* name)
 {
@@ -32,13 +33,13 @@ void print_location(const char* file, const char* function, int line)
    char process_name[MAX_PROCESS_NAME_SIZE + 1];
    get_process_name(pid, process_name);
 
-   set_out_color(stderr, CLR_RED);
+   set_out_color(OUT_STREAM, CLR_RED);
 
-   fprintf(stderr, "\n%s|%d -> %s -> %s -> line %d: \n", 
+   fprintf(OUT_STREAM, "\n%s|%d -> %s -> %s -> line %d: \n", 
       process_name, pid, file, function, line
    );
 
-   set_out_color(stderr, CLR_RESET);
+   set_out_color(OUT_STREAM, CLR_RESET);
 }
 
 void output_debug_info(
@@ -49,12 +50,12 @@ void output_debug_info(
 
    print_location(file, function, line);
 
-   set_out_color(stderr, CLR_CYAN);
+   set_out_color(OUT_STREAM, CLR_CYAN);
 
-   vfprintf(stderr, format, va_args);
-   fputs("\n\n", stderr);
+   vfprintf(OUT_STREAM, format, va_args);
+   fputs("\n\n", OUT_STREAM);
    
-   set_out_color(stderr, CLR_RESET);
+   set_out_color(OUT_STREAM, CLR_RESET);
 
    va_end(va_args);
 }
@@ -67,7 +68,7 @@ void output_vars(
    
    print_location(file, function, line);
    
-   set_out_color(stderr, CLR_CYAN);
+   set_out_color(OUT_STREAM, CLR_CYAN);
 
    char mutable_va_args_str[strlen(va_args_str) + 1];
    strcpy(mutable_va_args_str, va_args_str);
@@ -82,47 +83,47 @@ void output_vars(
       switch (variable_type) {
          case CHAR: {
             char variable_value = va_arg(va_args, int);
-            fprintf(stderr, "char %s = %c\n", variable_name, variable_value);
+            fprintf(OUT_STREAM, "char %s = %c\n", variable_name, variable_value);
             break;
          }
          case NCHAR: {
             char variable_value = va_arg(va_args, int);
-            fprintf(stderr, "char %s = %hhi\n", variable_name, variable_value);
+            fprintf(OUT_STREAM, "char %s = %hhi\n", variable_name, variable_value);
             break;
          }
          case UNCHAR: {
             unsigned char variable_value = va_arg(va_args, int);
-            fprintf(stderr, "unsigned char %s = %hhu\n", variable_name, variable_value);
+            fprintf(OUT_STREAM, "unsigned char %s = %hhu\n", variable_name, variable_value);
             break;
          }
          case SHORT: {
             short variable_value = va_arg(va_args, int);
-            fprintf(stderr, "short %s = %hd\n", variable_name, variable_value);
+            fprintf(OUT_STREAM, "short %s = %hd\n", variable_name, variable_value);
             break;
          }
          case USHORT: {
             unsigned short variable_value = va_arg(va_args, int);
-            fprintf(stderr, "unsigned short %s = %hu\n", variable_name, variable_value);
+            fprintf(OUT_STREAM, "unsigned short %s = %hu\n", variable_name, variable_value);
             break;
          }
          case INT: {
             int variable_value = va_arg(va_args, int);
-            fprintf(stderr, "int %s = %d\n", variable_name, variable_value);
+            fprintf(OUT_STREAM, "int %s = %d\n", variable_name, variable_value);
             break;
          }
          case UINT: {
             unsigned int variable_value = va_arg(va_args, unsigned int);
-            fprintf(stderr, "unsigned int %s = %u\n", variable_name, variable_value);
+            fprintf(OUT_STREAM, "unsigned int %s = %u\n", variable_name, variable_value);
             break;
          }
          case LONG: {
             long variable_value = va_arg(va_args, long);
-            fprintf(stderr, "long %s = %ld\n", variable_name, variable_value);
+            fprintf(OUT_STREAM, "long %s = %ld\n", variable_name, variable_value);
             break;
          }
          case ULONG: {
             unsigned long variable_value = va_arg(va_args, unsigned long);
-            fprintf(stderr, "unsigned long %s = %lu\n", variable_name, variable_value);
+            fprintf(OUT_STREAM, "unsigned long %s = %lu\n", variable_name, variable_value);
             break;
          }
          default: {
@@ -137,7 +138,7 @@ void output_vars(
    
    putchar('\n');
 
-   set_out_color(stderr, CLR_RESET);
+   set_out_color(OUT_STREAM, CLR_RESET);
 
    va_end(va_args);
 }
