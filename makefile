@@ -25,8 +25,8 @@ BUILD_DIR := ./build
 
 # terminal output coloring library
 CLROUT_DIR := ./M_clrout
-CLROUT_BIN_DIR := $(LIB_DIR)/bin
-CLROUT_LIB := $(LIB_BIN_DIR)/libclrout.a
+CLROUT_BIN_DIR := $(CLROUT_DIR)/bin
+CLROUT_LIB := $(CLROUT_BIN_DIR)/libclrout.a
 
 OUTPUT_FILE := $(BIN_DIR)/libCdebug_utils.a
 
