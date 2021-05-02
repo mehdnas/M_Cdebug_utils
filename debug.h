@@ -11,7 +11,8 @@ typedef enum TYPES_ENUM {
    SHORT, USHORT,
    INT, UINT,
    LONG, ULONG,
-   FLOAT, DOUBLE, LDOUBLE
+   FLOAT, DOUBLE,
+   STRING
 } type_t;
 
 #if !defined(NDEBUG) 

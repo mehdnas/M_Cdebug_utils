@@ -9,12 +9,16 @@ int main()
    unsigned char uc = 255;
    short s = 1;
    int intero = 1 << 20;
+   float f = 0.999;
+   const char* hello = "Hello world!";
 
    DBG_LOG_VARS(
       CHAR, c, 
       NCHAR, nc, 
       UNCHAR, uc, 
       SHORT, s,
-      INT, intero
+      INT, intero,
+      FLOAT, f,
+      STRING, hello
    );
 }

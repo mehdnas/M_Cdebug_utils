@@ -126,6 +126,21 @@ void output_vars(
             fprintf(OUT_STREAM, "unsigned long %s = %lu\n", variable_name, variable_value);
             break;
          }
+         case FLOAT: {
+            float variable_value = va_arg(va_args, double);
+            fprintf(OUT_STREAM, "float %s = %f\n", variable_name, variable_value);
+            break;
+         }
+         case DOUBLE: {
+            double variable_value = va_arg(va_args, double);
+            fprintf(OUT_STREAM, "double %s = %lf\n", variable_name, variable_value);
+            break;
+         }
+         case STRING: {
+            const char* variable_value = va_arg(va_args, const char*);
+            fprintf(OUT_STREAM, "const char* %s = \"%s\"\n", variable_name, variable_value);
+            break;
+         }
          default: {
             // Invalid or unsupported type
             DBG_LOG("Invalid or unsupported variable type");
