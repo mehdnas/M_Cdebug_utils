@@ -4,7 +4,7 @@
 
 /**
    Constants used to indicate variable types.
-   the U stands for unsigned and N stands for numeric. LDOUBLE is the 128 bits float.
+   the U stands for unsigned and N stands for numeric.
 */
 typedef enum TYPES_ENUM {
    CHAR, NCHAR, UNCHAR, 
@@ -19,8 +19,7 @@ typedef enum TYPES_ENUM {
    /**
       A macro that works just like printf but with the addition 
       that it also indicates the location (calling process, file, 
-      function and line where 
-      it was called.
+      function and line where it was called.
 
       @param format The string with the format just like printf
       @param ... The parameters with whitch the output string gets
@@ -45,7 +44,7 @@ typedef enum TYPES_ENUM {
 
 #else
 
-   // If NDEBUG is defined then the macros expands to nothing.
+   // If NDEBUG is defined then the macros expand to nothing.
    #define DBG_LOG(format, ...) 
    #define DBG_LOG_VARS(...) 
 

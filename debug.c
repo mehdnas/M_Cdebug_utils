@@ -12,7 +12,7 @@
 #define PROC_NAME_PATH_SIZE 32
 #define OUT_STREAM stderr
 
-void get_process_name(const pid_t pid, char* name)
+static void get_process_name(const pid_t pid, char* name)
 {
    char proc_name_path[PROC_NAME_PATH_SIZE];
    sprintf(proc_name_path, "/proc/%d/cmdline", pid);
@@ -26,7 +26,7 @@ void get_process_name(const pid_t pid, char* name)
    }
 }
 
-void print_location(const char* file, const char* function, int line)
+static void print_location(const char* file, const char* function, int line)
 {
    pid_t pid = getpid();
 
