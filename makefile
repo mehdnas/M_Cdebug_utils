@@ -14,10 +14,31 @@ CLROUT_LIB_BIN_PATH := $(CLROUT_BIN_DIR)/$(CLROUT_LIB)
 # Directories where libraries' binaries are found
 LIB_BIN_DIRS := $(CLROUT_BIN_DIR)
 
+###########################################
+# Project directories and files ###########
+###########################################
+
+# compilation and build directories
+BIN_DIR := ./bin
+BUILD_DIR := ./build
+
+# Header files
+DEBUG_H := debug.h
+
+# Source files
+DEBUG_C := debug.c
+
+# Object files
+DEBUG_O := $(BUILD_DIR)/$(DEBUG_C:.c=.o)
+DEBUG_O_HEADERS := $(DEBUG_H) $(CLROUT_H)
+
+# Library
+DEBUG_LIB := $(BIN_DIR)/libCdebug_utils.a
+DEBUG_LIB_OBJS := $(DEBUG_O)
+
 # Include directories and global defines
 INCLUDE_DIRS := $(CLROUT_DIR)
 DEFINES := 
-
 
 ###########################################
 # Compilation commands ####################
@@ -42,28 +63,6 @@ COBJ := $(CC) $(CFLAGS) $(GCC_INC_DIRS) $(GCC_DEFS) $(OBJ_COMPILATION_FLAGS)
 CEXE := $(CC) $(CFLAGS) $(GCC_LIB_DIRS) $(LINKER_FLAGS)
 # compile a library directory
 MAKE_LIB := make -C
-
-###########################################
-# Project directories and files ###########
-###########################################
-
-# compilation and build directories
-BIN_DIR := ./bin
-BUILD_DIR := ./build
-
-# Header files
-DEBUG_H := debug.h
-
-# Source files
-DEBUG_C := debug.c
-
-# Object files
-DEBUG_O := $(BUILD_DIR)/$(DEBUG_C:.c=.o)
-DEBUG_O_HEADERS := $(DEBUG_H) $(CLROUT_H)
-
-# Library
-DEBUG_LIB := $(BIN_DIR)/libCdebug_utils.a
-DEBUG_LIB_OBJS := $(DEBUG_O)
 
 ###########################################
 # Compilation rules and recipes ##########
