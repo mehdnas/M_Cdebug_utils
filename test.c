@@ -2,7 +2,7 @@
 
 int main() 
 {
-   DBG_LOG("Este es un programa para el test de debug");
+   DBG_LOG("This is a program to test Cdebug_utils library\n");
 
    char c = 'A';
    char nc = -3;

@@ -10,7 +10,6 @@
 #include "clrout.h"
 
 #define PROC_NAME_PATH_SIZE 32
-#define OUT_STREAM stderr
 
 static void get_process_name(const pid_t pid, char* name)
 {
@@ -51,7 +50,7 @@ void output_debug_info(
    print_location(file, function, line);
 
    set_out_color(OUT_STREAM, CLR_CYAN);
-
+   
    vfprintf(OUT_STREAM, format, va_args);
    fputs("\n\n", OUT_STREAM);
    
