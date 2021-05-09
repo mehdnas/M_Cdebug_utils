@@ -86,4 +86,5 @@ $(DEBUG_O): $(DEBUG_C) $(DEBUG_O_HEADERS)
 
 clean:
 	if [ -d "$(BUILD_DIR)" ]; then rm -r $(BUILD_DIR); fi
+	if [ -d "$(BIN_DIR)" ]; then rm -r $(BIN_DIR); fi
 
